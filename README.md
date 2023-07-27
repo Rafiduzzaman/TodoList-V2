@@ -53,7 +53,7 @@ An interactive webpage made with javascript.
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-- [Live Demo](https://rdzaman20000.github.io/Awesome-Books-/)
+- The Live demo off this project will be availible once all the features are implemented. Check it out later!!
 
 
 <!-- GETTING STARTED -->
