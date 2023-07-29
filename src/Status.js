@@ -6,6 +6,7 @@ function updateTaskStatus(taskIndex, status, tasksLocal) {
 function clearCompletedTasks(tasksLocal) {
   tasksLocal = tasksLocal.filter((task) => !task.completed);
 
+  // Assign correct indexes after deletion
   tasksLocal.forEach((_task, index) => {
     _task.index = index + 1;
   });
@@ -13,4 +14,5 @@ function clearCompletedTasks(tasksLocal) {
   localStorage.setItem('tasks', JSON.stringify(tasksLocal));
   document.location.reload();
 }
-  export { updateTaskStatus, clearCompletedTasks };
+
+export { updateTaskStatus, clearCompletedTasks };

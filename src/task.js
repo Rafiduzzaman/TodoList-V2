@@ -1,5 +1,4 @@
 function createTaskElement(taskName, tasksLocal) {
-  // Initialize an empty array
   if (!Array.isArray(tasksLocal)) {
     tasksLocal = [];
   }
@@ -19,12 +18,13 @@ function arrangeIndexes(tasksLocal) {
 
 function deleteTaskElement(tasksLocal, taskIndex) {
   tasksLocal = tasksLocal.filter((t) => t.index !== taskIndex);
-  arrangeIndexes(tasksLocal); //Assign correct indexes after deletion
+  arrangeIndexes(tasksLocal); 
   localStorage.setItem('tasks', JSON.stringify(tasksLocal));
   document.location.reload();
 }
 
 function updateTaskText(value, index, tasksLocal) {
+  
   if (index < 1 || index > tasksLocal.length) {
     console.error('Invalid task index.');
     return;
