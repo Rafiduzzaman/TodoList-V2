@@ -9,7 +9,7 @@ function clearCompletedTasks(tasksLocal) {
       index: index + 1,
     }));
 
-    localStorage.setItem('tasks', JSON.stringify(updatedTasks));
+  localStorage.setItem('tasks', JSON.stringify(updatedTasks));
   document.location.reload();
 }
 
