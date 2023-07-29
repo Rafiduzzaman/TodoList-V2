@@ -62,37 +62,31 @@ function activateDeleteListener(parent, taskIndex) { // Receive parent and taskI
   });
 }
 
-function activateMoreListeners(parent) { // Receive parent as a parameter
-  const moreBtn = parent.getElementsByClassName('three-dot')[0];
+function activateMoreListeners(parent) {
+  const moreBtn = parent.querySelector('.three-dot');
   moreBtn.addEventListener('click', () => {
-    const delBtn = parent.getElementsByClassName('trash-icon')[0];
-    if (delBtn.classList.contains('hide-icon')) {
-      delBtn.classList.remove('hide-icon');
-      activateDeleteListener(parent, parent.getElementsByClassName('index')[0].value);
-    } else {
-      delBtn.classList.add('hide-icon');
-    }
+    const delBtn = parent.querySelector('.trash-icon');
+    delBtn.classList.toggle('hide-icon');
+    activateDeleteListener(parent, parseInt(parent.querySelector('.index').value, 10)); // Add radix parameter
   });
 }
 
-function activateCheckboxListeners(parent) { // Receive parent as a parameter
-  const checkboxInput = parent.getElementsByClassName('checked')[0];
+function activateCheckboxListeners(parent) {
+  const checkboxInput = parent.querySelector('.checked');
   checkboxInput.addEventListener('change', (e) => {
     const clickedCheck = e.target;
-    const taskIndex = parent.getElementsByClassName('index')[0].value;
+    const taskIndex = parseInt(parent.querySelector('.index').value, 10); // Add radix parameter
     updateTaskStatus(taskIndex, clickedCheck.checked, tasksLocal);
-    const taskInput = parent.getElementsByClassName('task-name')[0];
-    taskInput.classList.toggle('completed-task', clickedCheck.checked);
+    parent.querySelector('.task-name').classList.toggle('completed-task', clickedCheck.checked);
   });
 }
 
-function activateTaskInputListeners(parent, taskIndex) { // Receive parent and taskIndex as parameters
-  const taskInput = parent.getElementsByClassName('task-name')[0];
+function activateTaskInputListeners(parent, taskIndex) {
+  const taskInput = parent.querySelector('.task-name');
   taskInput.addEventListener('change', () => {
     updateTaskText(taskInput.value, taskIndex, tasksLocal);
   });
 }
-
 const displayTasks = () => {
   if (tasksLocal.length > 0) {
     tasksLocal.forEach((task) => {
