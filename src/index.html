@@ -1,17 +1,21 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>To Do List Application</title>
   <base href="/">
-  <link rel="stylesheet" type="text/css" href="src/index.css">
+  <link rel="stylesheet" href="src/index.css">
+  <script defer="defer" src="runtime.bundle.js"></script>
+  <script defer="defer" src="main.bundle.js"></script>
 </head>
+
 <body>
   <div class="todolist">
-    <h1 class="heading">"Today's To Do"</h1>
+    <h1 class="heading">"Today's To do List"</h1>
     <div class="tasks">
-      <input type="text" id="task_input" placeholder="Add list items..">
+      <input id="task_input" placeholder="Add list items..">
       <button id="add_btn" type="button"><span>&#8629;</span></button>
     </div>
     <ul id="items"></ul>
@@ -20,4 +24,5 @@
   <script type="module" src="main.js"></script>
   <script type="module" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
 </body>
+
 </html>
