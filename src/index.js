@@ -54,7 +54,7 @@ function activateDeleteListener(delBtn) {
     const parent = delBtn.parentNode;
     const taskIndex = Number(parent.getElementsByClassName('task-index')[0].value);
     deleteTaskElement(tasksLocal, taskIndex);
-    arrangeIndexes(tasksLocal); 
+    arrangeIndexes(tasksLocal);
   });
 }
 
@@ -123,8 +123,8 @@ document.getElementById('add_btn').addEventListener('click', () => {
   if (taskName !== '') {
     createTaskElement(taskName, tasksLocal);
     tasksLocal = JSON.parse(localStorage.getItem('tasks'));
-    document.getElementById('list_items').innerHTML = ''; 
-    displayTasks(); 
+    document.getElementById('list_items').innerHTML = '';
+    displayTasks();
     taskInput.value = '';
   }
 });
