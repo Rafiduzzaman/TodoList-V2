@@ -1,24 +1,141 @@
-
-body {
-  font-family: Arial, sans-serif;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-h1 {
-  color: #333;
+body {
+  font-family: monospace, cursive;
+  background: white;
+}
+
+.todolist {
+  margin: 5vh 50vh 10vh 10vh;
+  width: 90%;
+  background: #fff;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.heading {
+  display: flex;
+  margin: 20px 0 20px 20px;
+  color: #000;
+  padding-top: 20px;
+  justify-content: center;
 }
 
 ul {
   list-style: none;
-  padding: 0;
+  margin-left: 15px;
+  width: 100%;
 }
 
-li {
-  margin: 5px 0;
+p {
+  margin-left: 20px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.tasks {
+  width: 95%;
+  margin: 0 20px 10px 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+input {
+  border: none;
   padding: 5px;
-  border: 1px solid #ccc;
-  background-color: #f9f9f9;
+  width: 95%;
+  font-size: 12px;
 }
 
-li.completed {
+#task_input:focus {
+  outline-color: rgb(207, 245, 230);
+  background-color: rgb(227, 237, 255);
+}
+
+input::placeholder {
+  color: rgb(158, 150, 150);
+}
+
+#add_btn {
+  padding: 3px;
+  background-color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.task_items {
+  width: 95%;
+  margin-left: 7px;
+  background-color: #fff;
+  border-bottom: 1px solid #929292;
+  display: flex;
+  padding: 5px;
+  align-items: center;
+}
+
+.checked {
+  margin-right: 10px;
+  width: 16px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.index {
+  color: #000;
+  display: flex;
+}
+
+.task-name {
+  width: 90%;
+  margin-right: 44px;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  color: rgb(65, 60, 60);
+  font-size: 16px;
+}
+
+.task-name:focus {
+  background-color: rgb(207, 245, 230);
+}
+
+.edit {
+  margin-right: 15px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.trash-icon {
+  cursor: pointer;
+  font-size: 22px;
+  padding-left: 20px;
+}
+
+.hide-icon {
+  display: none;
+}
+
+.completed-task {
   text-decoration: line-through;
+}
+
+#remove_btn {
+  border: none;
+  padding: 10px;
+  background: none;
+  font-family: monospace, cursive;
+  font-size: 20px;
+  font-weight: 400;
+  margin-left: 70px;
+  margin-top: 20px;
+  cursor: pointer;
+  font-style: italic;
+}
+
+#remove_btn:hover {
+  background: rgb(207, 245, 230);
 }
