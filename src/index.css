@@ -19,8 +19,8 @@ body {
 .heading {
   display: flex;
   margin: 20px 0 20px 20px;
+  padding-top: 40px;
   color: #000;
-  padding-top: 20px;
   justify-content: center;
 }
 
@@ -36,7 +36,7 @@ p {
   font-weight: 600;
 }
 
-.tasks {
+.task_container {
   width: 95%;
   margin: 0 20px 10px 20px;
   display: flex;
@@ -51,7 +51,7 @@ input {
 }
 
 #task_input:focus {
-  outline-color: rgb(207, 245, 230);
+  outline-color: rgb(136, 184, 246);
   background-color: rgb(227, 237, 255);
 }
 
@@ -67,7 +67,7 @@ input::placeholder {
   font-size: 20px;
 }
 
-.task_items {
+.task-list {
   width: 95%;
   margin-left: 7px;
   background-color: #fff;
@@ -84,7 +84,7 @@ input::placeholder {
   cursor: pointer;
 }
 
-.index {
+.task-index {
   color: #000;
   display: flex;
 }
@@ -100,10 +100,10 @@ input::placeholder {
 }
 
 .task-name:focus {
-  background-color: rgb(207, 245, 230);
+  background-color: rgb(119, 170, 230);
 }
 
-.edit {
+.three-dot {
   margin-right: 15px;
   cursor: pointer;
   font-size: 18px;
@@ -112,7 +112,6 @@ input::placeholder {
 .trash-icon {
   cursor: pointer;
   font-size: 22px;
-  padding-left: 20px;
 }
 
 .hide-icon {
@@ -137,5 +136,5 @@ input::placeholder {
 }
 
 #remove_btn:hover {
-  background: rgb(207, 245, 230);
+  background: rgb(83, 128, 205);
 }

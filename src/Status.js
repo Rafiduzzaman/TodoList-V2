@@ -4,13 +4,14 @@ function updateTaskStatus(taskIndex, status, tasksLocal) {
 }
 
 function clearCompletedTasks(tasksLocal) {
-  const updatedTasks = tasksLocal.filter((task) => !task.completed)
-    .map((task, index) => ({
-      ...task,
-      index: index + 1,
-    }));
+  tasksLocal = tasksLocal.filter((task) => !task.completed);
 
-  localStorage.setItem('tasks', JSON.stringify(updatedTasks));
+  // Assign correct indexes after deletion
+  tasksLocal.forEach((_task, index) => {
+    _task.index = index + 1;
+  });
+
+  localStorage.setItem('tasks', JSON.stringify(tasksLocal));
   document.location.reload();
 }
 

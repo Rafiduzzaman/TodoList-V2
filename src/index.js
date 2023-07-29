@@ -1,9 +1,6 @@
 import './index.css';
 import {
-  createTaskElement,
-  deleteTaskElement,
-  updateTaskText,
-  arrangeIndexes,
+  createTaskElement, deleteTaskElement, updateTaskText, arrangeIndexes,
 } from './task.js';
 import { updateTaskStatus, clearCompletedTasks } from './Status.js';
 
@@ -14,14 +11,12 @@ window.loadTasksToLocalStorage = () => {
   localStorage.setItem('tasks', text);
 };
 
-const taskList = document.getElementById('items'); // Move outside displayTasks()
-
 const displayTaskElement = (task) => {
   const taskItem = document.createElement('li');
-  taskItem.classList.add('task_items');
+  taskItem.classList.add('task-list');
 
   const taskIndex = document.createElement('span');
-  taskIndex.classList.add('index');
+  taskIndex.classList.add('task-index');
   taskIndex.value = task.index;
 
   const checkbox = document.createElement('input');
@@ -54,48 +49,71 @@ const displayTaskElement = (task) => {
   return taskItem;
 };
 
-function activateDeleteListener(parent, taskIndex) { // Receive parent and taskIndex as parameters
-  const delBtn = parent.getElementsByClassName('trash-icon')[0];
+function activateDeleteListener(delBtn) {
   delBtn.addEventListener('click', () => {
+    const parent = delBtn.parentNode;
+    const taskIndex = Number(parent.getElementsByClassName('task-index')[0].value);
     deleteTaskElement(tasksLocal, taskIndex);
-    arrangeIndexes(tasksLocal); // Reassign correct indexes after deletion
+    arrangeIndexes(tasksLocal);
   });
 }
 
-function activateMoreListeners(parent) {
-  const moreBtn = parent.querySelector('.three-dot');
-  moreBtn.addEventListener('click', () => {
-    const delBtn = parent.querySelector('.trash-icon');
-    delBtn.classList.toggle('hide-icon');
-    activateDeleteListener(parent, parseInt(parent.querySelector('.index').value, 10)); // Add radix parameter
+function activateMoreListeners() {
+  const moreBtn = document.querySelectorAll('.three-dot');
+  moreBtn.forEach((mb) => {
+    mb.addEventListener('click', (e) => {
+      const clickedBtn = e.target;
+      const parent = clickedBtn.parentNode;
+      const delBtn = parent.getElementsByClassName('trash-icon')[0];
+      if (delBtn.classList.contains('hide-icon')) {
+        delBtn.classList.remove('hide-icon');
+        activateDeleteListener(delBtn);
+      } else {
+        delBtn.classList.add('hide-icon');
+      }
+    });
   });
 }
 
-function activateCheckboxListeners(parent) {
-  const checkboxInput = parent.querySelector('.checked');
-  checkboxInput.addEventListener('change', (e) => {
-    const clickedCheck = e.target;
-    const taskIndex = parseInt(parent.querySelector('.index').value, 10); // Add radix parameter
-    updateTaskStatus(taskIndex, clickedCheck.checked, tasksLocal);
-    parent.querySelector('.task-name').classList.toggle('completed-task', clickedCheck.checked);
+function activateCheckboxListeners() {
+  const checkboxInput = document.querySelectorAll('.checked');
+  checkboxInput.forEach((cbi) => {
+    cbi.addEventListener('change', (e) => {
+      const clickedCheck = e.target;
+      const parent = clickedCheck.parentNode;
+      const taskIndex = parent.getElementsByClassName('task-index')[0].value;
+      updateTaskStatus(taskIndex, clickedCheck.checked, tasksLocal);
+      const taskInput = parent.getElementsByClassName('task-name')[0];
+      if (clickedCheck.checked) {
+        taskInput.classList.add('completed-task');
+      } else {
+        taskInput.classList.remove('completed-task');
+      }
+    });
   });
 }
 
-function activateTaskInputListeners(parent, taskIndex) {
-  const taskInput = parent.querySelector('.task-name');
-  taskInput.addEventListener('change', () => {
-    updateTaskText(taskInput.value, taskIndex, tasksLocal);
+function activateTaskInputListeners() {
+  const taskInput = document.querySelectorAll('.task-name');
+  taskInput.forEach((ti) => {
+    const parent = ti.parentNode;
+    const taskIndex = Number(parent.getElementsByClassName('task-index')[0].value);
+    ti.addEventListener('change', () => {
+      updateTaskText(ti.value, taskIndex, tasksLocal);
+    });
   });
 }
+
 const displayTasks = () => {
+  const taskList = document.getElementById('list_items');
   if (tasksLocal.length > 0) {
     tasksLocal.forEach((task) => {
       const taskElement = displayTaskElement(task);
       taskList.appendChild(taskElement);
-      activateMoreListeners(taskElement);
-      activateCheckboxListeners(taskElement);
-      activateTaskInputListeners(taskElement, task.index);
     });
+    activateMoreListeners();
+    activateCheckboxListeners();
+    activateTaskInputListeners();
   }
 };
 
@@ -105,8 +123,8 @@ document.getElementById('add_btn').addEventListener('click', () => {
   if (taskName !== '') {
     createTaskElement(taskName, tasksLocal);
     tasksLocal = JSON.parse(localStorage.getItem('tasks'));
-    taskList.innerHTML = ''; // Clear the existing task list (Avoid using document.getElementById('items'))
-    displayTasks(); // Redisplay the updated task list
+    document.getElementById('list_items').innerHTML = '';
+    displayTasks();
     taskInput.value = '';
   }
 });
