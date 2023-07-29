@@ -2,15 +2,15 @@ function updateTaskStatus(taskIndex, status, tasksLocal) {
   tasksLocal[taskIndex - 1].completed = status;
   localStorage.setItem('tasks', JSON.stringify(tasksLocal));
 }
-function clearCompletedTasks(tasksLocal) {
-  const updatedTasks = tasksLocal.filter((task) => !task.completed)
-    .map((task, index) => ({
-      ...task,
-      index: index + 1,
-    }));
 
-  localStorage.setItem('tasks', JSON.stringify(updatedTasks));
+function clearCompletedTasks(tasksLocal) {
+  tasksLocal = tasksLocal.filter((task) => !task.completed);
+
+  tasksLocal.forEach((_task, index) => {
+    _task.index = index + 1;
+  });
+
+  localStorage.setItem('tasks', JSON.stringify(tasksLocal));
   document.location.reload();
 }
-
-export { updateTaskStatus, clearCompletedTasks };
+  export { updateTaskStatus, clearCompletedTasks };

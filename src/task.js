@@ -18,9 +18,9 @@ function arrangeIndexes(tasksLocal) {
 }
 
 function deleteTaskElement(tasksLocal, taskIndex) {
-  const updatedTasks = tasksLocal.filter((t) => t.index !== taskIndex);
-  arrangeIndexes(updatedTasks); // Assign correct indexes after deletion
-  localStorage.setItem('tasks', JSON.stringify(updatedTasks));
+  tasksLocal = tasksLocal.filter((t) => t.index !== taskIndex);
+  arrangeIndexes(tasksLocal); //Assign correct indexes after deletion
+  localStorage.setItem('tasks', JSON.stringify(tasksLocal));
   document.location.reload();
 }
 
