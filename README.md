@@ -75,7 +75,7 @@ In order to run this project you need:
 
 Clone this repository to your desired folder:
 
-  git clone git@github.com:Rdzaman20000/TodoList-V2.git
+  git clone https://github.com/Rdzaman20000/TodoList-V2.git
 
 ### Install
 
@@ -95,7 +95,7 @@ Right click the html file and select the option "Open with live server";
 ## 👥 Authors <a name="authors"></a>
 
 
-👤 **Author1**
+👤 **Md.Rafiduzzaman**
 
 - GitHub: [@Rdzaman20000](https://github.com/Rdzaman20000)
 - Twitter: [@99_spectre](https://twitter.com/99_spectre)
